@@ -5,7 +5,14 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\PelatihController;
 
-Route::prefix('products')->middleware('apikey')->group(function () {
+
+
+
+    Route::get('/dokumentation', function () {
+        return 'Dokumentasi tersedia';
+    });
+
+    Route::prefix('products')->middleware('apikey')->group(function () {
     Route::apiResource('products', ProductController::class);
     Route::get('products', [ProductController::class, 'index']);     // GET /api/products
     Route::get('products/{id}', [ProductController::class, 'show']);   // GET /api/products/{id}
@@ -24,7 +31,10 @@ Route::prefix('pesertas')->middleware('apikey')->group(function () {
 
 
     Route::apiResource('pelatih', PelatihController::class);
+
     
     Route::post('/products/{id}/pay', [ProductController::class, 'pay']);
 
 });
+
+    
